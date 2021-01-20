@@ -1,1 +1,1 @@
-export * from './FrontendAuth';
+export * from './router';

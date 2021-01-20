@@ -1,4 +1,5 @@
-import { Home, User } from '@/pages';
+import Home from '@/pages/template/Home';
+import User from '@/pages/template/User';
 
 export const routerMap = [
   {
