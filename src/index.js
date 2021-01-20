@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './index.css';
-import Home from './pages/template/Home';
+import { FrontendAuth, routerMap } from '@/core';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
+  <Router>
+    <div>
+      <Switch>
+        <FrontendAuth routerConfig={routerMap} />
+      </Switch>
+    </div>
+  </Router>,
   document.getElementById('root')
 );
