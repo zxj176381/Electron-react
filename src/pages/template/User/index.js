@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getRouteQuery } from '@/storage';
 import logo from '../../../logo.svg';
-import './index.scss';
 
 export default class User extends Component {
   constructor(props) {
@@ -30,6 +29,14 @@ export default class User extends Component {
   }
 
   navigateBack() {}
+
+  getDom() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+  }
 
   render() {
     return (

@@ -19,6 +19,7 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: true,
     },
+    frame: false,
   });
 
   // 加载应用的index.html。

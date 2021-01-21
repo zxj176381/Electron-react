@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import { setPageSession } from '@/storage';
 import { getRouteName } from '@/shared';
+import EleReactLoading from '@/components/Ele-React-Loading';
 
 export default class Routers extends Component {
   constructor(props) {
@@ -23,11 +24,13 @@ export default class Routers extends Component {
           setPageSession(pathname, query);
         }
         return (
-          <Route
-            exact
-            path={routeConfig.pathname}
-            component={routeConfig.component}
-          />
+          <Suspense fallback={<EleReactLoading />}>
+            <Route
+              exact
+              path={routeConfig.pathname}
+              component={routeConfig.component}
+            />
+          </Suspense>
         );
       }
     }

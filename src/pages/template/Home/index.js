@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { navigateTo } from '@/shared';
 import logo from '@/logo.svg';
-import './index.scss';
+import style from './index.module.scss';
 
 export default class Home extends Component {
   constructor(props) {
@@ -23,19 +23,17 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className={style.App}>
+        <header className={style['App-header']}>
+          <img src={logo} className={style['App-logo']} alt="logo" />
           <p>
             Edit <code>src/User.js</code> and save to reload.
           </p>
           <p>You clicked {this.state.count} times</p>
-          {/* <p>age: {options.age}</p> */}
-          {/* <p>name: {options.name}</p> */}
           <button onClick={() => this.setCount()}> Click me </button>
           <button onClick={() => this.navigateToUser()}> 跳转User </button>
           <a
-            className="App-link"
+            className={style['App-link']}
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"

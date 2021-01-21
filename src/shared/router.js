@@ -1,4 +1,4 @@
-import { isStr, getUrlParams, getRelativePagePath } from './util';
+import { getUrlParams, getRelativePagePath } from './util';
 
 /**
  * 跳转到指定页面

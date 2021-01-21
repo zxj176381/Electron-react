@@ -1,6 +1,6 @@
-import Home from '@/pages/template/Home';
-import User from '@/pages/template/User';
-
+import React from 'react';
+const Home = React.lazy(() => import('@/pages/template/Home')); // 懒加载
+const User = React.lazy(() => import('@/pages/template/User')); // 懒加载
 export const routerMap = [
   {
     alias: '/',
