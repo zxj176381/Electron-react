@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getRouteQuery } from '@/storage';
-import logo from '../../../logo.svg';
+import logo from '@/logo.svg';
 
 export default class User extends Component {
   constructor(props) {
@@ -9,33 +9,6 @@ export default class User extends Component {
       count: 0,
       userInfo: null,
     };
-  }
-
-  onLoad() {
-    const options = getRouteQuery();
-    this.setState({
-      userInfo: options,
-    });
-  }
-
-  componentDidMount() {
-    this.onLoad();
-  }
-
-  setCount() {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  }
-
-  navigateBack() {}
-
-  getDom() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, 2000);
-    });
   }
 
   render() {
@@ -62,5 +35,32 @@ export default class User extends Component {
         </header>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.onLoad();
+  }
+
+  onLoad() {
+    const options = getRouteQuery();
+    this.setState({
+      userInfo: options,
+    });
+  }
+
+  setCount() {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  }
+
+  navigateBack() {}
+
+  getDom() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
   }
 }
