@@ -1,0 +1,12 @@
+.header {
+  background: #fff;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-app-region: drag;
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+}

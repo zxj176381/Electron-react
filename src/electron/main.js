@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -8,16 +8,16 @@ const mode = process.argv[2];
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1400,
+    height: 900,
     //弹出的窗口有无边框,默认为有
     // frame:false,
     show: false,
     backgroundColor: '#586148',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
-      contextIsolation: true,
+      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js'),
     },
     frame: false,
   });
@@ -26,7 +26,7 @@ function createWindow() {
   //mainWindow.loadFile('index.html')
 
   //判断是否是开发模式
-  if (mode === 'dev') {
+  if (mode === 'development') {
     mainWindow.loadURL('http://localhost:3000/');
     mainWindow.webContents.openDevTools();
   } else {
@@ -39,6 +39,15 @@ function createWindow() {
     );
   }
 
+  ipcMain.on('min', (e) => mainWindow.minimize());
+  ipcMain.on('max', (e) => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize();
+    } else {
+      mainWindow.maximize();
+    }
+  });
+  ipcMain.on('close', (e) => mainWindow.close());
   mainWindow.webContents.on('did-finish-load', () => {});
   mainWindow.webContents.on('dom-ready', () => {});
   mainWindow.once('ready-to-show', function () {

@@ -10,3 +10,12 @@ window.addEventListener('DOMContentLoaded', () => {
     replaceText(`${type}-version`, process.versions[type]);
   }
 });
+
+const loadApi = [
+  'electron', // 引入 electron
+  'fs',
+];
+
+loadApi.map((item) => {
+  global[item] = require(item);
+});

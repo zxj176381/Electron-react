@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { navigateTo } from '@/shared';
+import { getUserListService, addUserService } from '@/service';
 import logo from '@/logo.svg';
 import style from './index.module.scss';
 
@@ -9,6 +10,22 @@ export default class Home extends Component {
     this.state = {
       count: 0,
     };
+  }
+
+  componentDidMount() {
+    this.getUserList();
+  }
+
+  addUser() {
+    addUserService().then((res) => {
+      console.log(res);
+    });
+  }
+
+  getUserList() {
+    getUserListService().then((res) => {
+      console.log(res);
+    });
   }
 
   setCount() {
@@ -32,6 +49,7 @@ export default class Home extends Component {
           <p>You clicked {this.state.count} times</p>
           <button onClick={() => this.setCount()}> Click me </button>
           <button onClick={() => this.navigateToUser()}> 跳转User </button>
+          <button onClick={() => this.addUser()}> 添加User </button>
           <a
             className={style['App-link']}
             href="https://reactjs.org"

@@ -1,0 +1,8 @@
+.login {
+  margin-right: 15px;
+  -webkit-app-region: no-drag;
+  &__drop {
+    display: flex;
+    align-items: center;
+  }
+}

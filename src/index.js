@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import Routers from '@/core/router/Router';
-import { routerMap } from '@/core';
+import Routers from '@/routers/route/Router';
+import { routerMap } from '@/routers';
 import './index.css';
 
 ReactDOM.render(
   <Router>
-    <div>
-      <Switch>
-        <Routers routerConfig={routerMap} />
-      </Switch>
-    </div>
+    <Switch>
+      <Routers routerConfig={routerMap} />
+    </Switch>
   </Router>,
   document.getElementById('root')
 );

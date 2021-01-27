@@ -87,7 +87,7 @@ export function getDateString(date) {
 }
 
 // #start 地址信息
-const queryParamPattern = /([^&]+)\=([^&]+)/;
+const queryParamPattern = /([^&]+)=([^&]+)/;
 const invalidQueryValues = ['undefined', 'null'];
 /**
  * 序列化地址信息
