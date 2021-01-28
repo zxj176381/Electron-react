@@ -5,6 +5,7 @@ import EleReactSider from '@/components/Ele-React-Sider';
 import EleReactHeader from '@/components/Ele-React-Header';
 import EleReactContent from '@/components/Ele-React-Content';
 import EleReactFooter from '@/components/Ele-React-Footer';
+import EleReactLogin from '@/components/Ele-React-Login';
 import { getMenuListService } from '@/service';
 import { responseStatusMap } from '@/shared';
 
@@ -13,6 +14,7 @@ export default class index extends Component {
     super(props);
     this.state = {
       collapsed: false,
+      isShowLogin: false,
       menuList: [],
     };
   }
@@ -50,10 +52,12 @@ export default class index extends Component {
           <EleReactHeader
             collapsed={this.state.collapsed}
             selectCollapsed={this.selectCollapsed}
+            isShowLogin={this.state.isShowLogin}
           />
           <EleReactContent />
           <EleReactFooter />
         </Layout>
+        <EleReactLogin isShowLogin={this.state.isShowLogin} />
       </Layout>
     );
   }

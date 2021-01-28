@@ -1,8 +1,15 @@
 .login {
   margin-right: 15px;
+  cursor: pointer;
   -webkit-app-region: no-drag;
   &__drop {
     display: flex;
     align-items: center;
+  }
+  &__avatar {
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    border-radius: 50%;
   }
 }

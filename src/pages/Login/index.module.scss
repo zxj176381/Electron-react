@@ -1,0 +1,62 @@
+.login {
+  height: 100vh;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #fff;
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  &__content {
+    margin-top: 60px;
+  }
+  &__logo {
+    text-align: center;
+    height: 90px;
+    margin: 30px 0;
+    &--image {
+      height: 90px;
+      pointer-events: none;
+    }
+  }
+  &__input {
+    margin: 0 40px;
+    &--account {
+      margin-bottom: 15px;
+    }
+    &--password {
+      margin-bottom: 15px;
+    }
+    &--config {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &--find {
+      cursor: pointer;
+    }
+  }
+  &__submit {
+    margin: 25px 60px 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .login__logo--image {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

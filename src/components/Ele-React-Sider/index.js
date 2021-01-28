@@ -45,7 +45,6 @@ export default class index extends Component {
             className={style['sider__menu']}
             mode="inline"
             defaultSelectedKeys={[this.state.currentMenuIndex]}
-            onClick={this.selectMenu}
           >
             {this.props.menuList.map((item, index) => {
               return (

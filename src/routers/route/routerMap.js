@@ -1,5 +1,5 @@
 import React from 'react';
-const User = React.lazy(() => import('@/pages/template/User'));
+const Login = React.lazy(() => import('@/pages/Login'));
 const Layout = React.lazy(() => import('@/pages/Layout'));
 export const routerMap = [
   {
@@ -9,9 +9,9 @@ export const routerMap = [
     component: Layout,
   },
   {
-    alias: '/User',
-    pathname: '/User/:id',
-    name: 'User',
-    component: User,
+    alias: '/login',
+    pathname: '/login',
+    name: 'Login',
+    component: Login,
   },
 ];

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import style from './index.module.scss';
-import miniIcon from '../../../../essets/header/minimize.png';
-import miniIconHover from '../../../../essets/header/minimize-hover.png';
-import maxIcon from '../../../../essets/header/maxmize.png';
-import maxIconHover from '../../../../essets/header/maxmize-hover.png';
-import closeIcon from '../../../../essets/header/close.png';
-import closeIconHover from '../../../../essets/header/close-hover.png';
+import miniIcon from '@/assets/header/minimize.png';
+import miniIconHover from '@/assets/header/minimize-hover.png';
+import maxIcon from '@/assets/header/maxmize.png';
+import maxIconHover from '@/assets/header/maxmize-hover.png';
+import closeIcon from '@/assets/header/close.png';
+import closeIconHover from '@/assets/header/close-hover.png';
 
 export default class HeaderWinOpera extends Component {
   constructor(props) {
     super(props);
-    const { ipcRenderer: ipc } = window.electron;
+    const { min, max, close } = window.electron;
     this.state = {
       winIcon: [
         {
@@ -18,7 +18,7 @@ export default class HeaderWinOpera extends Component {
           iconHover: miniIconHover,
           alt: '最小化',
           click: () => {
-            ipc.send('min');
+            min();
           },
         },
         {
@@ -26,7 +26,7 @@ export default class HeaderWinOpera extends Component {
           iconHover: maxIconHover,
           alt: '最大化',
           click: () => {
-            ipc.send('max');
+            max();
           },
         },
         {
@@ -34,7 +34,7 @@ export default class HeaderWinOpera extends Component {
           iconHover: closeIconHover,
           alt: '关闭',
           click: () => {
-            ipc.send('close');
+            close();
           },
         },
       ],

@@ -1,32 +1,67 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
 import style from './index.module.scss';
+import UserDefault from '@/assets/header/user-default.png';
+import { connect } from 'react-redux';
+import { setShowLogin } from '@/redux/actions';
 
-export default class HeaderLogin extends Component {
+class HeaderLogin extends Component {
   constructor(props) {
     super(props);
-    this.stare = {
+    this.state = {
       userMenu: [
         {
           key: '0',
           name: '登录',
         },
+        {
+          key: '1',
+          name: '开通VIP',
+        },
+      ],
+      asSystem: [
+        {
+          key: '2',
+          name: '设置',
+        },
+        {
+          key: '3',
+          name: '意见反馈',
+        },
+        {
+          key: '4',
+          name: '满意度调查',
+        },
       ],
     };
   }
 
+  // 登录
+  popupLogin() {
+    const { setShowLogin } = this.props;
+    setShowLogin(true);
+  }
+
+  // 点击选项
+  clickMenu = ({ item, key, keyPath, domEvent }) => {
+    // console.log(item, key, keyPath, domEvent);
+    if (key === '0') {
+      this.popupLogin();
+    } else if (key === '1') {
+    }
+  };
+
   render() {
     const menu = (
-      <Menu>
-        <Menu.Item key="0">
-          <a href="http://www.alipay.com/">1st menu item</a>
-        </Menu.Item>
-        <Menu.Item key="1">
-          <a href="http://www.taobao.com/">2nd menu item</a>
-        </Menu.Item>
+      <Menu onClick={this.clickMenu}>
+        {this.state.userMenu.map((item, index) => {
+          return <Menu.Item key={item.key}>{item.name}</Menu.Item>;
+        })}
         <Menu.Divider />
-        <Menu.Item key="3">3rd menu item</Menu.Item>
+        {this.state.asSystem.map((item, index) => {
+          return <Menu.Item key={item.key}>{item.name}</Menu.Item>;
+        })}
       </Menu>
     );
     return (
@@ -36,11 +71,8 @@ export default class HeaderLogin extends Component {
           overlay={menu}
           trigger={['click']}
         >
-          <div
-            className="ant-dropdown-link"
-            onClick={(e) => e.preventDefault()}
-          >
-            <UserOutlined style={{ fontSize: '28px', marginRight: '3px' }} />
+          <div onClick={(e) => e.preventDefault()}>
+            <img className={style.login__avatar} src={UserDefault} alt="" />
             <DownOutlined />
           </div>
         </Dropdown>
@@ -48,3 +80,19 @@ export default class HeaderLogin extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isShowLogin: state.isShowLogin,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    setShowLogin(data) {
+      dispatch(setShowLogin(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderLogin);
