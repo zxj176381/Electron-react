@@ -2,7 +2,16 @@ import { service } from '@/service';
 
 export function getMenuListService() {
   return service({
-    path: '/',
-    methods: 'GET',
+    url: '/',
+    method: 'GET',
+  });
+}
+
+export function loginService(data) {
+  return service({
+    url: '/login',
+    method: 'POST',
+    data,
+    showDialog: true,
   });
 }

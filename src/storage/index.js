@@ -1,3 +1,3 @@
 export * from './session';
 export * from './local';
-export * from './pageQuery';
+export * from './page-query';

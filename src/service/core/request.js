@@ -1,15 +1,25 @@
 import axios from 'axios';
-import { SERVICE, logInfo } from '@/shared';
-// import { getUserStorage } from '@/storage';
+import qs from 'qs';
+import { SERVICE, logInfo, getClass } from '@/shared';
+import { message } from 'antd';
 
 const service = axios.create({
   baseURL: SERVICE,
   withCredentials: false,
   timeout: 10000,
+  transformRequest: [
+    function (data) {
+      if (getClass(data) !== 'formdata') {
+        return qs.stringify(data);
+      }
+      return data;
+    },
+  ],
 });
 
 service.interceptors.request.use(
   (config) => {
+    if (config.withToken) config.headers.token = 'token';
     return config;
   },
   (error) => {
@@ -22,19 +32,21 @@ service.interceptors.request.use(
  */
 service.interceptors.response.use(
   (response) => {
-    let res = response.data;
+    const { config, data } = response;
+    let result = data;
     if (process.env.NODE_ENV !== 'production') {
-      logInfo('@request', `open url: ${response.config.baseURL}`, 'data:', res);
+      logInfo('@request', `open url: ${config.baseURL}`, 'data:', result);
     }
 
-    if (res.code === 200 || res.code === 0) {
-      return res;
-    } else if (res.code === 201) {
-      return Promise.reject(res.msg);
-    } else if (res.code === 203 || res.code === 204) {
-      setTimeout(() => {
-        // router.app.$router.push('/login');
-      }, 500);
+    if (result.code === 200) {
+      return result;
+    } else if (result.code === 500) {
+      if (config.showDialog) {
+        message.error(result.msg);
+      }
+      return result;
+    } else if (result.code === 400) {
+      message.warning('请登录后尝试');
     }
   },
   (error) => {

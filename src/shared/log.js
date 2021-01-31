@@ -73,29 +73,6 @@ function _printLogInDevTools(messages, theme) {
 
   console.log(...messages);
 }
-// 在手机设备中输出日志
-// function _printLogInDevice(messages, typeName) {
-//   switch (typeName) {
-//     case 'debug':
-//       console.log(...messages);
-//       break;
-//     case 'info':
-//       console.info(...messages);
-//       break;
-//     case 'warn':
-//       console.warn(...messages);
-//       break;
-//     case 'error':
-//       console.error(...messages);
-//       break;
-//     default:
-//       console.log(...messages);
-//   }
-// }
-// 已废弃
-export function log(...rest) {
-  _printLog(logTypes.LOG, rest);
-}
 // 输出调试信息；指出细粒度信息事件对调试应用程序是非常有帮助的。
 export function logDebug(...rest) {
   _printLog(logTypes.DEBUG, rest);

@@ -1,6 +1,6 @@
 const _hasOwnPrototype = Object.prototype.hasOwnProperty;
 // 检测值的类型
-function getClass(obj) {
+export function getClass(obj) {
   return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
 }
 // 检测对象自身属性中是否具有指定的属性
